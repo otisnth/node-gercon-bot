@@ -7,7 +7,8 @@ import getQRScene from "./controllers/getQR/index.js";
 import scanQRScene from "./controllers/scanQR/index.js";
 
 import asyncWrapper from "./util/error-handler.js";
-import { initDB } from "./services/db/index.js";
+import sequelize from "./services/db/index.js";
+import { syncModels } from "./services/db/syncModels.js";
 
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -15,10 +16,10 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const db = initDB();
+syncModels();
 
 try {
-    await db.authenticate();
+    await sequelize.authenticate();
     console.log("Соединение с БД было успешно установлено");
 } catch (e) {
     console.log("Невозможно выполнить подключение к БД: ", e);

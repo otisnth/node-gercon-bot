@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-export const initDB = () => {
-    return new Sequelize({
-        dialect: "sqlite",
-        storage: "./storage/database.sqlite",
-    });
-};
+const sequelize = new Sequelize({
+    dialect: "sqlite",
+    storage: "./storage/database.sqlite",
+});
+
+export default sequelize;

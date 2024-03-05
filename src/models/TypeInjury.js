@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "./../services/db/index.js";
-const Room = sequelize.define("Room", {
+const TypeInjury = sequelize.define("TypeInjury", {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -10,10 +10,6 @@ const Room = sequelize.define("Room", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    address: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
 });
 
-export default Room;
+export default TypeInjury;
