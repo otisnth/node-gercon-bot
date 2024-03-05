@@ -17,3 +17,9 @@ export const getBackKeyboard = () => {
 
     return backKeyboard;
 };
+
+export const removeKeyboard = () => {
+    let removeKeyboard = Markup.removeKeyboard();
+
+    return removeKeyboard;
+};
