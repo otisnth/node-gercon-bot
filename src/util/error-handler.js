@@ -4,7 +4,7 @@ const asyncWrapper = (fn) => {
             return await fn(ctx);
         } catch (error) {
             console.log(error);
-            await ctx.reply("Упс... Что-то пошло не так");
+            await ctx.reply(ctx.i18n.t("errors.unknown"));
             return next();
         }
     };

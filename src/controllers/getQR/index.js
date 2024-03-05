@@ -1,10 +1,9 @@
 import { Scenes } from "telegraf";
-import locale from "./../../locales/ru.json" assert { type: "json" };
 
 const getQR = new Scenes.BaseScene("getQR");
 
 getQR.enter(async (ctx) => {
-    await ctx.reply(locale.scenes.getQR.start);
+    await ctx.reply(ctx.i18n.t("scenes.getQR.start"));
     ctx.scene.leave();
 });
 

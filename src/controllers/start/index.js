@@ -5,12 +5,12 @@ import locale from "./../../locales/ru.json" assert { type: "json" };
 const start = new Scenes.BaseScene("start");
 
 start.enter(async (ctx) => {
-    await ctx.reply(locale.scenes.start.greating, getMainKeyboard());
+    await ctx.reply(ctx.i18n.t("scenes.start.greating"), getMainKeyboard(ctx));
     ctx.scene.leave();
 });
 
 start.leave(async (ctx) => {
-    await ctx.reply(locale.scenes.start.nextStep);
+    await ctx.reply(ctx.i18n.t("scenes.start.nextStep"));
 });
 
 export default start;
