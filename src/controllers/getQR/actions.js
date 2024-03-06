@@ -8,5 +8,5 @@ export const generateQRAction = async (ctx) => {
     await ctx.answerCbQuery();
     await ctx.deleteMessage();
     await ctx.replyWithPhoto(Input.fromLocalFile("./storage/qr.png"));
-    fs.unlinkSync("./storage/qr.png");
+    fs.unlink("./storage/qr.png", () => {});
 };
