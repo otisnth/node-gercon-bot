@@ -1,6 +1,8 @@
 import { Scenes } from "telegraf";
+import { message } from "telegraf/filters";
 import TelegrafI18n from "telegraf-i18n";
 import { getBackKeyboard, getMainKeyboard } from "../../util/keyboards.js";
+import { scanQRAction } from "./action.js";
 
 const scanQR = new Scenes.BaseScene("scanQR");
 
@@ -15,5 +17,7 @@ scanQR.leave(async (ctx) => {
 });
 
 scanQR.hears(TelegrafI18n.match("keyboards.backKeyboard.back"), leave());
+
+scanQR.on(message("photo"), scanQRAction);
 
 export default scanQR;
