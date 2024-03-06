@@ -4,6 +4,9 @@ import Jimp from "jimp";
 import QrCode from "qrcode-reader";
 import Order from "../../models/Order.js";
 import Room from "../../models/Room.js";
+import Incident from "../../models/Incident.js";
+import { getOptionKeyboard } from "./helpers.js";
+import { removeKeyboard } from "../../util/keyboards.js";
 
 export const scanQRAction = async (ctx) => {
     let imageId = ctx.message.photo.pop().file_id;
@@ -34,17 +37,28 @@ export const scanQRAction = async (ctx) => {
         if (qrData.type === "room") {
             let room = await Room.findByPk(qrData.id);
             room = room.dataValues;
-            await ctx.reply(ctx.i18n.t("scenes.scanQR.result.room", { name: room.name, address: room.address }));
+            let amountIncident = await Incident.count({ where: { room: room.id } });
+            await ctx.reply(
+                ctx.i18n.t("scenes.scanQR.result.room", {
+                    name: room.name,
+                    address: room.address,
+                    count: amountIncident,
+                }),
+                getOptionKeyboard(ctx, amountIncident)
+            );
         } else {
             let order = await Order.findByPk(qrData.id);
             order = order.dataValues;
+            let amountIncident = await Incident.count({ where: { order: order.id } });
             await ctx.reply(
                 ctx.i18n.t("scenes.scanQR.result.order", {
                     name: order.name,
                     address: order.address,
                     date: order.date,
                     description: order.description,
-                })
+                    count: amountIncident,
+                }),
+                getOptionKeyboard(ctx, amountIncident)
             );
         }
 
@@ -52,4 +66,12 @@ export const scanQRAction = async (ctx) => {
     } catch (err) {
         console.error("Error scanning QR Code", err);
     }
+};
+
+export const getHistory = async (ctx) => {
+    await ctx.reply("История");
+};
+
+export const sendReport = async (ctx) => {
+    await ctx.scene.enter("report");
 };

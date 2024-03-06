@@ -7,8 +7,8 @@
         "scanQR": {
             "start": "Отравьте фотографию QR-кода",
             "result": {
-                "room": "Помещение: ${name}\nАдрес: ${address}",
-                "order": "Наряд-допуск:\n${name}\nАдрес: ${address}\nДата проведения: ${date}\nОписание: ${description}"
+                "room": "Помещение: ${name}\nАдрес: ${address}\nИнцидентов: ${count}",
+                "order": "Наряд-допуск:\n${name}\nАдрес: ${address}\nДата проведения: ${date}\nОписание: ${description}\nИнцидентов: ${count}"
             }
         },
         "getQR": {
@@ -26,6 +26,10 @@
         },
         "backKeyboard": {
             "back": "◀️ Назад"
+        },
+        "scanOptionsKeyboard": {
+            "history": "Просмотреть историю",
+            "report": "Заполнить отчет"
         }
     },
     "errors": {

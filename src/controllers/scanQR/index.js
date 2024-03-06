@@ -2,7 +2,7 @@ import { Scenes } from "telegraf";
 import { message } from "telegraf/filters";
 import TelegrafI18n from "telegraf-i18n";
 import { getBackKeyboard, getMainKeyboard } from "../../util/keyboards.js";
-import { scanQRAction } from "./action.js";
+import { scanQRAction, getHistory, sendReport } from "./action.js";
 
 const scanQR = new Scenes.BaseScene("scanQR");
 
@@ -17,6 +17,8 @@ scanQR.leave(async (ctx) => {
 });
 
 scanQR.hears(TelegrafI18n.match("keyboards.backKeyboard.back"), leave());
+scanQR.hears(TelegrafI18n.match("keyboards.scanOptionsKeyboard.history"), getHistory);
+scanQR.hears(TelegrafI18n.match("keyboards.scanOptionsKeyboard.report"), sendReport);
 
 scanQR.on(message("photo"), scanQRAction);
 
