@@ -1,16 +1,21 @@
 import { Scenes } from "telegraf";
 import Room from "../../models/Room.js";
 import Order from "../../models/Order.js";
+import { getSelectQRKeyboard } from "./helpers.js";
+import { generateQRAction } from "./actions.js";
 
 const getQR = new Scenes.BaseScene("getQR");
 
 getQR.enter(async (ctx) => {
-    await ctx.reply(ctx.i18n.t("scenes.getQR.start"));
-    const rooms = await Room.findOne();
-    console.log(rooms.dataValues);
-    ctx.scene.leave();
+    const room = await Room.findOne();
+    room.dataValues.type = "room";
+    const order = await Order.findOne();
+    order.dataValues.type = "order";
+    await ctx.reply(ctx.i18n.t("scenes.getQR.start"), getSelectQRKeyboard(ctx, [room.dataValues, order.dataValues]));
 });
 
 getQR.leave(async (ctx) => {});
+
+getQR.action(/generateQR/, generateQRAction);
 
 export default getQR;
