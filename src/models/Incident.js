@@ -14,7 +14,7 @@ const Incident = sequelize.define("Incident", {
         allowNull: false,
     },
     date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
     },
     description: {

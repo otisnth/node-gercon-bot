@@ -9,6 +9,7 @@ import scanQRScene from "./controllers/scanQR/index.js";
 import asyncWrapper from "./util/error-handler.js";
 import sequelize from "./services/db/index.js";
 import { syncModels } from "./services/db/syncModels.js";
+import { fillExample } from "./services/db/fillExample.js";
 
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
@@ -17,6 +18,8 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 syncModels();
+
+// fillExample();
 
 try {
     await sequelize.authenticate();
