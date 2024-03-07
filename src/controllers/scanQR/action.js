@@ -33,6 +33,7 @@ export const scanQRAction = async (ctx) => {
             qrData = JSON.parse(value.result);
         };
         qr.decode(image.bitmap);
+        ctx.session["reportLocation"] = qrData;
 
         if (qrData.type === "room") {
             let room = await Room.findByPk(qrData.id);

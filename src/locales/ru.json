@@ -22,7 +22,14 @@
             "form": {
                 "getFullName": "Введите Ваше ФИО",
                 "getDate": "Заполните дату\nФормат: гггг-мм-дд",
-                "getInjury": "Выберите вид микротравмы"
+                "getInjury": "Выберите вид микротравмы",
+                "selectedInjury": "Выбрано: ${name}",
+                "getDescription": "Введите описание (необязательно)",
+                "skipDescription": "Пропустить"
+            },
+            "errors": {
+                "formatDate": "Неверный формат даты!",
+                "invalidDate": "Неверная дата!"
             }
         }
     },

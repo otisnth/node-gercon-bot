@@ -18,3 +18,13 @@ export async function getTypeInjuryKeyboard() {
 
     return Markup.inlineKeyboard(keyboard).resize();
 }
+
+export function getSkipDescriptionKeyboard(ctx) {
+    return Markup.inlineKeyboard([
+        Markup.button.callback(
+            ctx.i18n.t("scenes.report.form.skipDescription"),
+            JSON.stringify({ a: "skipDescription" }),
+            false
+        ),
+    ]).resize();
+}
