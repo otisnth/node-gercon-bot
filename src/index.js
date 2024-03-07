@@ -6,6 +6,7 @@ import startScene from "./controllers/start/index.js";
 import getQRScene from "./controllers/getQR/index.js";
 import scanQRScene from "./controllers/scanQR/index.js";
 import reportFormScene from "./controllers/reportForm/index.js";
+import historyScene from "./controllers/history/index.js";
 
 import asyncWrapper from "./util/error-handler.js";
 import sequelize from "./services/db/index.js";
@@ -30,7 +31,7 @@ try {
 }
 
 const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
-const stage = new Scenes.Stage([startScene, getQRScene, scanQRScene, reportFormScene]);
+const stage = new Scenes.Stage([startScene, getQRScene, scanQRScene, reportFormScene, historyScene]);
 const i18n = new TelegrafI18n({
     defaultLanguage: "ru",
     directory: path.resolve(__dirname, "locales"),
