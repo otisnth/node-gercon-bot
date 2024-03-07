@@ -19,6 +19,5 @@ export const getBackKeyboard = (ctx) => {
 
 export const removeKeyboard = () => {
     let removeKeyboard = Markup.removeKeyboard();
-
     return removeKeyboard;
 };

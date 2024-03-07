@@ -13,7 +13,7 @@ scanQR.enter(async (ctx) => {
 });
 
 scanQR.leave(async (ctx) => {
-    await ctx.reply(ctx.i18n.t("scenes.start.nextStep"), getMainKeyboard(ctx));
+    // await ctx.reply(ctx.i18n.t("scenes.start.nextStep"), getMainKeyboard(ctx));
 });
 
 scanQR.hears(TelegrafI18n.match("keyboards.backKeyboard.back"), leave());
