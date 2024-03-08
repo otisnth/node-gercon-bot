@@ -70,7 +70,7 @@ export const scanQRAction = async (ctx) => {
 };
 
 export const getHistory = async (ctx) => {
-    await ctx.reply("История");
+    await ctx.scene.enter("history");
 };
 
 export const sendReport = async (ctx) => {

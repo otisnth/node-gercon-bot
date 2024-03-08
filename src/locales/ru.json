@@ -44,6 +44,10 @@
         "scanOptionsKeyboard": {
             "history": "Просмотреть историю",
             "report": "Заполнить отчет"
+        },
+        "historyKeyboard": {
+            "title": "История инцидентов:",
+            "item": "${location}\n${injury}"
         }
     },
     "errors": {
