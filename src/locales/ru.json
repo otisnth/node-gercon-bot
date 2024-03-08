@@ -51,7 +51,8 @@
         },
         "paginationKeyboard": {
             "next": "➡️ Вперед",
-            "prev": "⬅️ Назад"
+            "prev": "⬅️ Назад",
+            "showed": "Показано (${start}-${end}) из ${length}"
         }
     },
     "errors": {
