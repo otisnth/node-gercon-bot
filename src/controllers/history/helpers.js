@@ -1,7 +1,5 @@
 import { Markup } from "telegraf";
 import Incident from "../../models/Incident.js";
-import Order from "../../models/Order.js";
-import Room from "../../models/Room.js";
 import TypeInjury from "../../models/TypeInjury.js";
 
 export async function getHistoryKeyboard(ctx) {
@@ -22,19 +20,14 @@ export async function getHistoryKeyboard(ctx) {
 
     let keyboard = [];
     for (const i of data) {
-        let location, injury;
+        let injury;
 
-        if (typeof i.dataValues.room === "number") {
-            location = await Room.findByPk(i.dataValues.room);
-        } else {
-            location = await Order.findByPk(i.dataValues.order);
-        }
         injury = await TypeInjury.findByPk(i.dataValues.injury);
 
         keyboard.push([
             Markup.button.callback(
                 ctx.i18n.t("keyboards.historyKeyboard.item", {
-                    location: location.dataValues.name,
+                    date: i.dataValues.date,
                     injury: injury.dataValues.name,
                 }),
                 JSON.stringify({ a: "getHistoryItem", id: i.dataValues.id }),
@@ -42,5 +35,5 @@ export async function getHistoryKeyboard(ctx) {
             ),
         ]);
     }
-    return Markup.inlineKeyboard(keyboard).resize();
+    return Markup.inlineKeyboard(keyboard);
 }

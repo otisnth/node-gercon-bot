@@ -47,7 +47,7 @@
         },
         "historyKeyboard": {
             "title": "История инцидентов:",
-            "item": "${location}\n${injury}"
+            "item": "${date}\n${injury}"
         }
     },
     "errors": {
