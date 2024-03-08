@@ -48,6 +48,10 @@
         "historyKeyboard": {
             "title": "История инцидентов:",
             "item": "${date}\n${injury}"
+        },
+        "paginationKeyboard": {
+            "next": "➡️ Вперед",
+            "prev": "⬅️ Назад"
         }
     },
     "errors": {
