@@ -30,7 +30,7 @@ export const paginationKeyboard = (ctx, position) => {
     return paginationKeyboard;
 };
 
-export const getPagination = (ctx, itemPerPage, currentPage, length) => {
+export const getPagination = async (ctx, itemPerPage, currentPage, length) => {
     if (itemPerPage >= length) return;
     let keyboard;
     if (!currentPage) keyboard = paginationKeyboard(ctx, "start");
@@ -41,7 +41,7 @@ export const getPagination = (ctx, itemPerPage, currentPage, length) => {
     let endIndex = currentPage * itemPerPage + itemPerPage;
     endIndex = endIndex > length ? length : endIndex;
 
-    ctx.reply(
+    let msg = await ctx.reply(
         ctx.i18n.t("keyboards.paginationKeyboard.showed", {
             start: startIndex,
             end: endIndex,
@@ -49,5 +49,5 @@ export const getPagination = (ctx, itemPerPage, currentPage, length) => {
         }),
         keyboard
     );
-    return;
+    return msg;
 };
