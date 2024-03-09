@@ -40,10 +40,13 @@ const report = new Scenes.WizardScene(
             if (ctx.message.text === ctx.i18n.t("keyboards.backKeyboard.toMain")) return ctx.scene.leave();
             return;
         }
-        await ctx.deleteMessage();
+        // await ctx.deleteMessage();
         const callbackData = JSON.parse(ctx.callbackQuery.data);
         const typeInjury = await TypeInjury.findByPk(callbackData.id);
-        await ctx.reply(ctx.i18n.t("scenes.report.form.selectedInjury", { name: typeInjury.dataValues.name }));
+        await ctx.editMessageText(
+            ctx.i18n.t("scenes.report.form.selectedInjury", { name: typeInjury.dataValues.name })
+        );
+        // await ctx.reply(ctx.i18n.t("scenes.report.form.selectedInjury", { name: typeInjury.dataValues.name }));
         ctx.wizard.state.data.injury = typeInjury.dataValues.id;
         await ctx.reply(ctx.i18n.t("scenes.report.form.getDescription"), getSkipDescriptionKeyboard(ctx));
         return ctx.wizard.next();

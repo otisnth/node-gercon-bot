@@ -34,7 +34,7 @@ export async function getHistory(ctx) {
 export function getPageHistory(data, itemPerPage, currentPage) {
     const startIndex = currentPage * itemPerPage;
     const endIndex = startIndex + itemPerPage;
-    return data.length < endIndex ? data.slice(startIndex) : data.slice(startIndex, itemPerPage);
+    return data.length < endIndex ? data.slice(startIndex) : data.slice(startIndex, endIndex);
 }
 
 export const historyItemAction = async (ctx) => {
