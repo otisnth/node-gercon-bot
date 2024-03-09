@@ -11,7 +11,7 @@ import historyScene from "./controllers/history/index.js";
 import asyncWrapper from "./util/error-handler.js";
 import sequelize from "./services/db/index.js";
 import { syncModels } from "./services/db/syncModels.js";
-import { fillExample } from "./services/db/fillExample.js";
+// import { fillExample } from "./services/db/fillExample.js";
 
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);

@@ -18,3 +18,5 @@ export const fillExample = async () => {
     await TypeInjury.create({ id: 3, name: "Поверхностная рана" });
     await TypeInjury.create({ id: 4, name: "Другое повреждение" });
 };
+
+fillExample();
