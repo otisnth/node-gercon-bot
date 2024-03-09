@@ -9,4 +9,4 @@ services:
         ports:
             - "8020:8001"
         working_dir: /app
-        command: bash -c "npm install --force && node .\src\index.js"
+        command: bash -c "npm install --force && node ./src/index.js"
