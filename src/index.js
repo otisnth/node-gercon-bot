@@ -56,4 +56,9 @@ bot.hears(
     asyncWrapper(async (ctx) => await ctx.scene.enter("scanQR"))
 );
 
+bot.hears(
+    TelegrafI18n.match("keyboards.backKeyboard.toMain"),
+    asyncWrapper(async (ctx) => ctx.scene.enter("start"))
+);
+
 bot.startPolling();

@@ -24,7 +24,7 @@ export const paginationKeyboard = (ctx, position) => {
     if (position === "start") keyboard = [paginationNext];
     else if (position === "end") keyboard = [paginationPrev];
     else keyboard = [paginationPrev, paginationNext];
-    let paginationKeyboard = Markup.keyboard([keyboard]);
+    let paginationKeyboard = Markup.keyboard([keyboard, [ctx.i18n.t("keyboards.backKeyboard.toMain")]]);
     paginationKeyboard = paginationKeyboard.resize();
 
     return paginationKeyboard;

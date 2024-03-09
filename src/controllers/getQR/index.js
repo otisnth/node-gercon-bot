@@ -14,8 +14,6 @@ getQR.enter(async (ctx) => {
     await ctx.reply(ctx.i18n.t("scenes.getQR.start"), getSelectQRKeyboard(ctx, [room.dataValues, order.dataValues]));
 });
 
-getQR.leave(async (ctx) => {});
-
 getQR.action(/generateQR/, generateQRAction);
 
 export default getQR;

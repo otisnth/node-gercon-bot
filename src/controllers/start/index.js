@@ -1,6 +1,5 @@
 import { Scenes } from "telegraf";
 import { getMainKeyboard } from "../../util/keyboards.js";
-import locale from "./../../locales/ru.json" assert { type: "json" };
 
 const start = new Scenes.BaseScene("start");
 

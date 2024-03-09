@@ -20,8 +20,6 @@ history.enter(async (ctx) => {
     paginationMsgs.push(showed);
 });
 
-history.leave(async (ctx) => {});
-
 history.hears(TelegrafI18n.match("keyboards.paginationKeyboard.next"), async (ctx) => {
     await ctx.deleteMessage();
     for (const i of paginationMsgs) {

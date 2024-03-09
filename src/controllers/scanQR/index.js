@@ -12,11 +12,10 @@ scanQR.enter(async (ctx) => {
     await ctx.reply(ctx.i18n.t("scenes.scanQR.start"), getBackKeyboard(ctx));
 });
 
-scanQR.leave(async (ctx) => {
+scanQR.hears(TelegrafI18n.match("keyboards.backKeyboard.back"), async (ctx) => {
     await ctx.reply(ctx.i18n.t("scenes.start.nextStep"), getMainKeyboard(ctx));
+    leave();
 });
-
-scanQR.hears(TelegrafI18n.match("keyboards.backKeyboard.back"), leave());
 scanQR.hears(TelegrafI18n.match("keyboards.scanOptionsKeyboard.history"), getHistory);
 scanQR.hears(TelegrafI18n.match("keyboards.scanOptionsKeyboard.report"), sendReport);
 

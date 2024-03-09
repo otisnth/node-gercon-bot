@@ -25,7 +25,7 @@ export const scanQRAction = async (ctx) => {
 
         const image = await Jimp.read("./storage/inputQR.jpeg");
         const qr = new QrCode();
-        qr.callback = function (err, value) {
+        qr.callback = async function (err, value) {
             if (err) {
                 console.error("Error reading QR Code", err);
                 return;
@@ -65,7 +65,7 @@ export const scanQRAction = async (ctx) => {
 
         await fs.promises.unlink("./storage/inputQR.jpeg");
     } catch (err) {
-        console.error("Error scanning QR Code", err);
+        await ctx.reply(ctx.i18n.t("errors.readingQR"));
     }
 };
 
