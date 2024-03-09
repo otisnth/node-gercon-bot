@@ -1,6 +1,8 @@
 import { Markup } from "telegraf";
+import { getPageHistory } from "./action.js";
 
-export async function getHistoryKeyboard(ctx, data) {
+export async function getHistoryKeyboard(ctx, historyList, itemPerPage, currentPage) {
+    let data = getPageHistory(historyList, itemPerPage, currentPage);
     let keyboard = [];
     for (const i of data) {
         keyboard.push([
@@ -14,40 +16,42 @@ export async function getHistoryKeyboard(ctx, data) {
             ),
         ]);
     }
+    keyboard.push(getPagination(ctx, itemPerPage, currentPage, historyList.length));
     return Markup.inlineKeyboard(keyboard);
 }
 
 export const paginationKeyboard = (ctx, position) => {
-    const paginationNext = ctx.i18n.t("keyboards.paginationKeyboard.next");
-    const paginationPrev = ctx.i18n.t("keyboards.paginationKeyboard.prev");
+    const paginationNext = Markup.button.callback(
+        ctx.i18n.t("keyboards.paginationKeyboard.next"),
+        JSON.stringify({ a: "paginationNext" }),
+        false
+    );
+    const paginationPrev = Markup.button.callback(
+        ctx.i18n.t("keyboards.paginationKeyboard.prev"),
+        JSON.stringify({ a: "paginationPrev" }),
+        false
+    );
     let keyboard;
     if (position === "start") keyboard = [paginationNext];
     else if (position === "end") keyboard = [paginationPrev];
     else keyboard = [paginationPrev, paginationNext];
-    let paginationKeyboard = Markup.keyboard([keyboard, [ctx.i18n.t("keyboards.backKeyboard.toMain")]]);
-    paginationKeyboard = paginationKeyboard.resize();
 
-    return paginationKeyboard;
+    return keyboard;
 };
 
-export const getPagination = async (ctx, itemPerPage, currentPage, length) => {
+export const getPagination = (ctx, itemPerPage, currentPage, length) => {
     if (itemPerPage >= length) return;
     let keyboard;
     if (!currentPage) keyboard = paginationKeyboard(ctx, "start");
     else if (Math.floor(length / itemPerPage) === currentPage) keyboard = paginationKeyboard(ctx, "end");
     else keyboard = paginationKeyboard(ctx, "middle");
 
-    let startIndex = currentPage * itemPerPage + 1;
-    let endIndex = currentPage * itemPerPage + itemPerPage;
-    endIndex = endIndex > length ? length : endIndex;
+    return keyboard;
+};
 
-    let msg = await ctx.reply(
-        ctx.i18n.t("keyboards.paginationKeyboard.showed", {
-            start: startIndex,
-            end: endIndex,
-            length: length,
-        }),
-        keyboard
-    );
-    return msg;
+export const getHistoryOptionKeyboard = (ctx) => {
+    return Markup.keyboard([
+        ctx.i18n.t("keyboards.scanOptionsKeyboard.report"),
+        ctx.i18n.t("keyboards.backKeyboard.toMain"),
+    ]).resize();
 };

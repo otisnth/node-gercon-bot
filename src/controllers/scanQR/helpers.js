@@ -9,7 +9,7 @@ export const getOptionKeyboard = (ctx, showHistory) => {
         optionKeyboardReport,
         ctx.i18n.t("keyboards.backKeyboard.toMain"),
     ]);
-    optionKeyboard = optionKeyboard.resize().oneTime();
+    optionKeyboard = optionKeyboard.resize();
 
     return optionKeyboard;
 };

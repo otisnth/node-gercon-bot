@@ -80,3 +80,15 @@ export const historyItemAction = async (ctx) => {
     }
     return;
 };
+
+export const getHistoryTitle = (ctx, itemPerPage, currentPage, length) => {
+    let startIndex = currentPage * itemPerPage + 1;
+    let endIndex = currentPage * itemPerPage + itemPerPage;
+    endIndex = endIndex > length ? length : endIndex;
+
+    return ctx.i18n.t("keyboards.paginationKeyboard.showed", {
+        start: startIndex,
+        end: endIndex,
+        length: length,
+    });
+};

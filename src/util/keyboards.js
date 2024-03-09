@@ -21,3 +21,7 @@ export const removeKeyboard = () => {
     let removeKeyboard = Markup.removeKeyboard();
     return removeKeyboard;
 };
+
+export const toMainKeyboard = (ctx) => {
+    return Markup.keyboard([[ctx.i18n.t("keyboards.backKeyboard.toMain")]]).resize();
+};

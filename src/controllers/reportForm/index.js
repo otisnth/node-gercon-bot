@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Scenes } from "telegraf";
-import { removeKeyboard, getMainKeyboard } from "../../util/keyboards.js";
+import { toMainKeyboard, getMainKeyboard } from "../../util/keyboards.js";
 import { getTypeInjuryKeyboard, getSkipDescriptionKeyboard } from "./helpers.js";
 import TypeInjury from "../../models/TypeInjury.js";
 import Incident from "../../models/Incident.js";
@@ -10,7 +10,7 @@ let typeInjuryKeyboard = await getTypeInjuryKeyboard();
 const report = new Scenes.WizardScene(
     "report",
     async (ctx) => {
-        await ctx.reply(ctx.i18n.t("scenes.report.form.getFullName"), removeKeyboard());
+        await ctx.reply(ctx.i18n.t("scenes.report.form.getFullName"), toMainKeyboard(ctx));
         ctx.wizard.state.data = {};
         return ctx.wizard.next();
     },
@@ -68,6 +68,7 @@ const report = new Scenes.WizardScene(
 );
 
 report.leave(async (ctx) => {
+    await ctx.reply(ctx.i18n.t("scenes.report.form.sendReport"));
     await ctx.reply(ctx.i18n.t("scenes.start.nextStep"), getMainKeyboard(ctx));
 });
 

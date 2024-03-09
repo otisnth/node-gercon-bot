@@ -25,7 +25,8 @@
                 "getInjury": "Выберите вид микротравмы",
                 "selectedInjury": "Выбрано: ${name}",
                 "getDescription": "Введите описание (необязательно)",
-                "skipDescription": "Пропустить"
+                "skipDescription": "Пропустить",
+                "sendReport": "Сведения внесены в систему. Спасибо!"
             },
             "errors": {
                 "formatDate": "Неверный формат даты!",
