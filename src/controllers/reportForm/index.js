@@ -5,7 +5,7 @@ import { getTypeInjuryKeyboard, getSkipDescriptionKeyboard } from "./helpers.js"
 import TypeInjury from "../../models/TypeInjury.js";
 import Incident from "../../models/Incident.js";
 
-const typeInjuryKeyboard = await getTypeInjuryKeyboard();
+let typeInjuryKeyboard = await getTypeInjuryKeyboard();
 
 const report = new Scenes.WizardScene(
     "report",

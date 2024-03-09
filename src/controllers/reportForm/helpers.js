@@ -3,7 +3,7 @@ import TypeInjury from "../../models/TypeInjury.js";
 
 export async function getTypeInjuryKeyboard() {
     let keyboard = [];
-
+    await TypeInjury.sync();
     const typeInjury = await TypeInjury.findAll();
 
     for (const type of typeInjury) {
