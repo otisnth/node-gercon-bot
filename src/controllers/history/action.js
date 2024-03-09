@@ -10,12 +10,14 @@ export async function getHistory(ctx) {
             where: {
                 room: ctx.session["reportLocation"].id,
             },
+            order: [["date", "ASC"]],
         });
     } else {
         data = await Incident.findAll({
             where: {
                 order: ctx.session["reportLocation"].id,
             },
+            order: [["date", "ASC"]],
         });
     }
 
