@@ -40,7 +40,7 @@ export const paginationKeyboard = (ctx, position) => {
 };
 
 export const getPagination = (ctx, itemPerPage, currentPage, length) => {
-    if (itemPerPage >= length) return;
+    if (itemPerPage >= length) return [];
     let keyboard;
     if (!currentPage) keyboard = paginationKeyboard(ctx, "start");
     else if (Math.floor(length / itemPerPage) === currentPage) keyboard = paginationKeyboard(ctx, "end");
