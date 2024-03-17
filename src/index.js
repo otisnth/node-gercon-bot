@@ -44,6 +44,8 @@ bot.use(session());
 bot.use(i18n.middleware());
 bot.use(stage.middleware());
 
+bot.telegram.setMyCommands([{ command: "start", description: "На главную" }]);
+
 bot.start(asyncWrapper(async (ctx) => ctx.scene.enter("start")));
 
 bot.hears(
